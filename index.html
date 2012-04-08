@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="jquery-memorable : JQuery plugin to remember position and/or size of elements." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jquery-memorable</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mark100net/jquery-memorable">Fork Me on GitHub</a>
+
+          <h1 id="project_title">jquery-memorable</h1>
+          <h2 id="project_tagline">JQuery plugin to remember position and/or size of elements.</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/mark100net/jquery-memorable/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/mark100net/jquery-memorable/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>Requirements (in addition to JQuery proper).</h3>
+
+<p>The requirements depend upon which options are used, but note the following:</p>
+
+<ul>
+<li><p>If saving size information, you must install and include prior to this plugin the <a href="https://github.com/cowboy/jquery-throttle-debounce">jquery-throttle-debounce</a> plugin.  This prevents the resizing code (and resulting disk accesses) from running multiple times during one resizing operation, significantly affecting performance.  A copy is included in the demo folder but it might be best to directly obtain an up-to-date copy.</p></li>
+<li><p>The plugin will attempt to use <a href="http://www.webmonkey.com/2011/04/how-to-use-html5s-local-storage-tools-today">local storage</a> to remember size and/or position but will fall back to cookies if necessary.  You can also force the use of cookies if for some reason that is desired.  In order to use cookies you must install and include prior to this plugin the <a href="https://github.com/carhartl/jquery-cookie">jquery-cookie</a> plugin.  A copy is included in the demo folder but it might be best to directly obtain an up-to-date copy.</p></li>
+<li><p>No facilities for actually moving or resizing are included in this plugin.  You will be using <a href="https://github.com/jquery/jquery-ui">jquery-ui</a> (draggable(), resizable(), etc.) as currently the persistence process is kicked off when the element generates a stop drag event (in the case of position) and a resize event (in the case of size), so this plugin will only function if you do something that initiates these events. The demo uses a custom version of jquery-ui that only includes draggable and resizable.</p></li>
+<li><p>Each element on which the plugin is used should have a unique id attribute.  Otherwise, be sure to set the <code>dataPrefix</code> option for each element.</p></li>
+</ul><h3>Installation</h3>
+
+<p>Include scripts, after JQuery proper, as follows:</p>
+
+<ul>
+<li>jquery.ba-throttle-debounce.min.js (Required if saving element size)</li>
+<li>jquery.cookie.js (Required for browsers not supporting localStorage)</li>
+<li>jquery.memorable.js (this plugin)</li>
+</ul><h3>Basic Usage example</h3>
+
+<p>HTML:</p>
+
+<p><code>&lt;div id='giveMeMem'&gt;I will never forget!.....&lt;/div&gt;</code></p>
+
+<p>Javascript:</p>
+
+<p><code>$('#giveMeMem').memorable();</code></p>
+
+<p>See demo/index.html for a full working example.</p>
+
+<h3>Options</h3>
+
+<p>An options object can be passed with the following options (the default value is shown for each):</p>
+
+<p><code>rememberPosition: true</code></p>
+
+<p>Whether to save the position of the element.  The position is updated each time the element is dropped by  virtue of a dragstop event being generated.</p>
+
+<p><code>rememberSize: true</code></p>
+
+<p>Whether to save the size of the element.  The stored size is updated once when the user has finished resizing the element (current waiting until one-half second after the last resize).</p>
+
+<p><code>dataPrefix: ""</code></p>
+
+<p>The prefix to be used in the data store.  If this is not set, the element's id will be used.</p>
+
+<p><code>debug: false</code></p>
+
+<p>If enabled, debug mode will print some information to the console (for browsers which have a <code>window.console</code> object).</p>
+
+<p><code>expiry: 30</code> </p>
+
+<p>Expiration in days of stored data.  Only relevant where cookies are used.</p>
+
+<p><code>forceCookies: false</code></p>
+
+<p>Force the use of cookies instead of local storage.  Keep in mind that when using cookies there is a higher likelihood of running out of local storage.</p>
+
+<p><code>cookiePath: "/"</code></p>
+
+<p>Use when desiring to limit the data storage scope to certain pages.  Only relevant where cookie storage is used.</p>
+
+<p>Example with some explicit options:</p>
+
+<p><code>$('#rememberMe').memorable({ rememberPosition: false, debug: true });</code></p>
+
+<h3>Feedback</h3>
+
+<p>NB:  This is not only the first jquery plugin I've published on github--it's the first one I've ever written.  It arose out of a specific need and was designed for a specific purpose.  So if you have problems or find that it almost but not quite meets your specific needs, please feel free to submit an issue and I will see if it can be improved for more general use.</p>
+
+<h3>Licenses</h3>
+
+<p>Dual licensed under the MIT and GPL licenses.</p>
+
+<h3>Acknowledgements</h3>
+
+<p>This plugin relies to some extent on the jquery-throttle-debounce plugin by <a href="https://github.com/cowboy" class="user-mention">@cowboy</a> and the jquery-cookie plugin by <a href="https://github.com/carhartl" class="user-mention">@carhartl</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jquery-memorable maintained by <a href="https://github.com/mark100net">mark100net</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("<script type="text/javascript">    var _gaq = _gaq || [];   _gaq.push(['_setAccount', 'UA-30603576-1']);   _gaq.push(['_trackPageview']);    (function() {     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);   })();  </script>");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
