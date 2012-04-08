@@ -1,0 +1,81 @@
+### Requirements (in addition to JQuery proper).
+
+The requirements depend upon which options are used, but note the following:
+
+* If saving size information, you must install and include prior to this plugin the [jquery-throttle-debounce](https://github.com/cowboy/jquery-throttle-debounce) plugin.  This prevents the resizing code (and resulting disk accesses) from running multiple times during one resizing operation, significantly affecting performance.  A copy is included in the demo folder but it might be best to directly obtain an up-to-date copy.
+
+* The plugin will attempt to use [local storage](http://www.webmonkey.com/2011/04/how-to-use-html5s-local-storage-tools-today) to remember size and/or position but will fall back to cookies if necessary.  You can also force the use of cookies if for some reason that is desired.  In order to use cookies you must install and include prior to this plugin the [jquery-cookie](https://github.com/carhartl/jquery-cookie) plugin.  A copy is included in the demo folder but it might be best to directly obtain an up-to-date copy.
+
+* No facilities for actually moving or resizing are included in this plugin.  You will be using [jquery-ui](https://github.com/jquery/jquery-ui) (draggable(), resizable(), etc.) as currently the persistence process is kicked off when the element generates a stop drag event (in the case of position) and a resize event (in the case of size), so this plugin will only function if you do something that initiates these events. The demo uses a custom version of jquery-ui that only includes draggable and resizable.
+
+* Each element on which the plugin is used should have a unique id attribute.  Otherwise, be sure to set the `dataPrefix` option for each element.
+
+### Installation
+
+Include scripts, after JQuery proper, as follows:
+
+* jquery.ba-throttle-debounce.min.js (Required if saving element size)
+* jquery.cookie.js (Required for browsers not supporting localStorage)
+* jquery.memorable.js (this plugin)
+
+### Basic Usage example
+
+HTML:
+
+  `<div id='giveMeMem'>I will never forget!.....</div>`
+
+Javascript:
+
+  `$('#giveMeMem').memorable();`
+
+See demo/index.html for a full working example.
+
+### Options
+
+An options object can be passed with the following options (the default value is shown for each):
+
+`rememberPosition: true`
+
+Whether to save the position of the element.  The position is updated each time the element is dropped by  virtue of a dragstop event being generated.
+
+`rememberSize: true`
+
+Whether to save the size of the element.  The stored size is updated once when the user has finished resizing the element (current waiting until one-half second after the last resize).
+
+`dataPrefix: ""`
+
+The prefix to be used in the data store.  If this is not set, the element's id will be used.
+
+`debug: false`
+
+If enabled, debug mode will print some information to the console (for browsers which have a `window.console` object).
+
+`expiry: 30` 
+
+Expiration in days of stored data.  Only relevant where cookies are used.
+
+`forceCookies: false`
+
+Force the use of cookies instead of local storage.  Keep in mind that when using cookies there is a higher likelihood of running out of local storage.
+
+`cookiePath: "/"`
+
+Use when desiring to limit the data storage scope to certain pages.  Only relevant where cookie storage is used.
+
+
+Example with some explicit options:
+
+`$('#rememberMe').memorable({ rememberPosition: false, debug: true });`
+
+### Feedback
+
+NB:  This is not only the first jquery plugin I've published on github--it's the first one I've ever written.  It arose out of a specific need and was designed for a specific purpose.  So if you have problems or find that it almost but not quite meets your specific needs, please feel free to submit an issue and I will see if it can be improved for more general use.
+
+### Licenses
+
+Dual licensed under the MIT and GPL licenses.
+
+### Acknowledgements
+
+This plugin relies to some extent on the jquery-throttle-debounce plugin by @cowboy and the jquery-cookie plugin by @carhartl
+ 
