@@ -1,0 +1,32 @@
+#rememberMe {
+	border: 1px solid black;
+	width: 300px;
+	height: 400px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	overflow: hidden;
+	padding: 8px;
+	background-color: #DDDDDD;
+}
+
+#meToo {
+	border: 1px solid black;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 410px;
+	top: 210px;
+	overflow: hidden;
+	padding: 8px;
+	background-color: #FFFF66;
+}
+
+#help_and_results {
+	color: green;
+	position: absolute;
+	left: 60px;
+	bottom: 20px;
+	width: 500px;
+	z-index: -1;
+}
